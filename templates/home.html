@@ -16,15 +16,21 @@
   
 </head>
 <body>
+    {% include 'nav.html' %}
     <div class="container">
         <h1 class="text-center mt-2 mb-4">Jovian Careers</h1>
         <img class="img-fluid" src="../static/banner.jpg" alt="Main Banner" id="banner">
-        <h2>Jovian</h2>
-        <p class="lead">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores iure magni tempore recusandae qui minima a odio molestias, est similique tempora inventore placeat corporis quam rem ipsam accusantium molestiae officia.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores iure magni tempore recusandae qui minima a odio molestias, est similique tempora inventore placeat corporis quam rem ipsam accusantium molestiae officia.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores iure magni tempore recusandae qui minima a odio molestias, est similique tempora inventore placeat corporis quam rem ipsam accusantium molestiae officia.
-        </p>
+
+        <div class="row mt-2 pt-2" style="margin-bottom:32px">
+            <div class="col-md-6">
+                <p class="lead">
+                    At Jovian, we're on a mission to build the most highly reputed technical university in the world, and we’re building it completely online. Our flagship data science program helps working professionals with a background in programming or analytics make a career transition to data science. We also offer several free beginner-friendly courses and have a fast-growing community of 200,000+ users.
+                </p>
+            </div>
+            <div class="d-none d-md-block col-md-6">
+                <img src="/static/people.jpg" style="height:320px;border-radius:4px;">
+            </div>
+        </div>
 
         <h2 class="text-center mt-2 mb-4">Open Positions</h2>
         <div>
@@ -34,8 +40,8 @@
         </div>
         <div class="text-center">
             <button class="btn btn-primary btn-lg">Contact Us</button>
-            <p class="mt-4">Copyright 2023, Jovian</p>
         </div>
+        {% include 'footer.html' %}
     </div>
 </body> 
 </html>
