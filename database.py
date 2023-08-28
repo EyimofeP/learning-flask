@@ -20,6 +20,14 @@ def load_jobs_from_db():
             jobs.append(dict(row._mapping))
 
         return jobs
-    
-    
-    
+
+# fetch data of one single row
+def load_job_from_db(id):
+    with engine.connect() as conn:
+        result = conn.execute(text(f"SELECT * FROM jobs WHERE id={id}"))
+        
+        jobs = []
+        for row in result.all():
+            jobs.append(dict(row._mapping))
+
+        return jobs[0]
