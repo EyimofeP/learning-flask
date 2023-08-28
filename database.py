@@ -1,6 +1,7 @@
+import os
 from sqlalchemy import create_engine, text
 
-db_connection_string = "mysql://LZgJYDwGsBDVdrM.root:BJ10Nl6rXI4ta99R@gateway01.us-west-2.prod.aws.tidbcloud.com:4000/pintycareers"
+db_connection_string = os.environ["DB_connection"]
 
 # connect to the cloud database
 engine = create_engine(db_connection_string, connect_args={
