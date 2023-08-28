@@ -8,7 +8,7 @@ engine = create_engine(db_connection_string, connect_args={
         }
     })
 
-with engine.connect() as conn:
-    result = conn.execute(text("SELECT * FROM jobs"))
-    print(result.all())
 
+    
+    
+    
