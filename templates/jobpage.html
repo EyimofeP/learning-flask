@@ -30,7 +30,8 @@
         {% endfor %}
       </ol>
       <h4>Salary</h4>
-      {% if len(currency) > 1 %}
+      
+      {% if  job.currency|length > 1 %}
         <p> <b> {{job.currency}} </b> {{job.salary}}</p>
       {% else %}
       <p> <b>{{job.currency}}</b>{{job.salary}}</p>
