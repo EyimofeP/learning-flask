@@ -26,8 +26,8 @@ def load_job_from_db(id):
     with engine.connect() as conn:
         result = conn.execute(text(f"SELECT * FROM jobs WHERE id={id}"))
         
-        jobs = []
-        for row in result.all():
-            jobs.append(dict(row._mapping))
-
-        return jobs[0]
+        results = result.all()
+        if len(results) == 0:
+            return None
+        else:
+            return dict(results[0]._mapping)
