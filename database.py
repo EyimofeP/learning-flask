@@ -26,8 +26,30 @@ def load_job_from_db(id):
     with engine.connect() as conn:
         result = conn.execute(text(f"SELECT * FROM jobs WHERE id={id}"))
         
+        #spool all the rows
         results = result.all()
+
+        # if more than one row, turn to dict else return None
         if len(results) == 0:
             return None
         else:
             return dict(results[0]._mapping)
+
+
+# add application data to the database
+def add_application_to_db(job_id, application):
+    with engine.connect() as conn:
+        query = text("INSERT INTO applications (job_id, full_name, email, linkedin_url, education, work_experience, resume_url) VALUES (:job_id, :full_name, :email, :linkedin_url, :education, :work_experience, :resume_url)")
+    
+        params = {
+            "job_id": job_id,
+            "full_name": application['full_name'],
+            "email": application['email'],
+            "linkedin_url": application['linkedin_url'],
+            "education": application['education'],
+            "work_experience": application['work_experience'],
+            "resume_url": application['resume_url']
+        }
+        
+        conn.execute(query, params)
+        conn.commit()
