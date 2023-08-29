@@ -11,6 +11,6 @@
     {% endif %}
     </div>
     <div class="col-3">
-        <button class="btn btn-outline-primary" type="button"> Apply </button>
+       <a href="{{ url_for('job_description', id= job.id) }}"><button class="btn btn-outline-primary" type="button"> Apply </button> </a>
     </div>
 </div>
