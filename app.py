@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-from database import load_jobs_from_db, load_job_from_db, add_application_to_db
+from database import load_jobs_from_db, load_job_from_db, add_application_to_db, load_applications_from_db
 
 app = Flask(__name__)
 
@@ -26,9 +26,19 @@ def apply_job(id):
                            application=data, job=job)
 
 @app.route("/api/jobs")
-def host_apis():
+def all_jobs_apis():
     jobs = load_jobs_from_db()
     return jsonify(jobs)
+
+@app.route("/api/job/<id>")
+def job_api(id):
+    job = load_job_from_db(id)
+    return jsonify(job)
+
+@app.route("/admin/applications/")
+def view_applications():
+    applications =  load_applications_from_db()
+    return render_template("view_applications.html", applications=applications)
 
 
 if __name__ == "__main__":

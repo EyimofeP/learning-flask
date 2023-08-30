@@ -53,3 +53,15 @@ def add_application_to_db(job_id, application):
         
         conn.execute(query, params)
         conn.commit()
+
+# fetch applications from Database
+def load_applications_from_db():
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT * FROM jobs JOIN applications ON jobs.id = applications.job_id"))
+
+        #spool all rows
+        applications = []
+        for row in result.all():
+            applications.append(dict(row._mapping))
+
+        return applications
