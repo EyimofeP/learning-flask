@@ -54,6 +54,24 @@ def add_application_to_db(job_id, application):
         conn.execute(query, params)
         conn.commit()
 
+# edit application data to the database
+def update_application_to_db(application_id, application):
+    with engine.connect() as conn:
+        query = text("UPDATE applications SET full_name=:full_name, email=:email, linkedin_url=:linkedin_url, education=:education, work_experience=:work_experience, resume_url=:resume_url WHERE application_id=:application_id")
+    
+        params = {
+            "job_id": application_id,
+            "full_name": application['full_name'],
+            "email": application['email'],
+            "linkedin_url": application['linkedin_url'],
+            "education": application['education'],
+            "work_experience": application['work_experience'],
+            "resume_url": application['resume_url']
+        }
+        
+        conn.execute(query, params)
+        conn.commit()
+
 # fetch applications from Database
 def load_applications_from_db():
     with engine.connect() as conn:
