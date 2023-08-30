@@ -65,3 +65,17 @@ def load_applications_from_db():
             applications.append(dict(row._mapping))
 
         return applications
+    
+# view a single application info
+def load_application_from_db(job_id, application_id):
+    with engine.connect() as conn:
+        result = conn.execute(text(f"SELECT * FROM jobs JOIN applications ON jobs.id = applications.job_id WHERE applications.id={application_id} AND jobs.id={job_id}"))
+
+        #spool all the rows
+        results = result.all()
+
+        # if more than one row, turn to dict else return None
+        if len(results) == 0:
+            return None
+        else:
+            return dict(results[0]._mapping)
